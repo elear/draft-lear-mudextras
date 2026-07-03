@@ -22,3 +22,5 @@ draft-lear-iotops-mudextras.xml
 package-lock.json
 report.xml
 !requirements.txt
+*.yang
+

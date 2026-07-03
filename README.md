@@ -1,8 +1,17 @@
 <!-- regenerate: on (set to off if you edit this file) -->
 
-# TODO - Your title
+# draft-lear-iotops-mudextras
 
-This is the working area for the individual Internet-Draft, "TODO - Your title".
+This draft covers things that we might want to make changes to in [MUD](https://www.rfc-editor.org/rfc/rfc8520.html).
+
+## Intro
+Some examples might include:
+* addressing QOS
+* handling odd cases like directed broadcast
+* more explicit handling of multicast
+* making clear whether one can include [IP ACLs](https://www.rfc-editor.org/rfc/rfc8519.html).
+
+Ideas wanted.
 
 * [Editor's Copy](https://elear.github.io/draft-lear-mudextras/#go.draft-lear-iotops-mudextras.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-lear-iotops-mudextras)
