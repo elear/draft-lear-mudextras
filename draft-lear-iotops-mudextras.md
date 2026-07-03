@@ -323,6 +323,7 @@ Reference: [RFCXXXX] (this document)
 ~~~~~
 
 The following YANG namespace is registered for the directed-broadcasts MUD extension:
+
 * Namespace: urn:ietf:params:xml:ns:yang:ietf-mud-directed-broadcasts
 * Prefix: mud-directed-broadcasts
 
