@@ -1,0 +1,458 @@
+
+
+
+
+IOT Operations                                                   E. Lear
+Internet-Draft                                       Cisco Systems, Inc.
+Intended status: Standards Track                             3 July 2026
+Expires: 4 January 2027
+
+
+                 Some MUD Extensions and Clarifications
+                   draft-lear-iotops-mudextras-latest
+
+Abstract
+
+   Manufacturer Usage Descriptions (MUD) provide a means to describe
+   device network behavior.  This memo clarifies some aspects that may
+   improve both usability and interoperability.  Some examples include
+   how to handle IP-based access-lists, broadcasts and multicasts of
+   various forms, and QoS.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at
+   https://elear.github.io/draft-lear-mudextras/draft-lear-iotops-
+   mudextras.html.  Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-lear-iotops-mudextras/.
+
+   Discussion of this document takes place on the IOT Operations Working
+   Group mailing list (mailto:iotops@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/iotops/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/iotops/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/elear/draft-lear-mudextras.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 4 January 2027.
+
+Copyright Notice
+
+   Copyright (c) 2026 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+     1.1.  Conventions and Definitions
+   2.  Clarifications
+     2.1.  ACLs in MUD
+       2.1.1.  Discussion
+     2.2.  Directed Broadcasts
+       2.2.1.  The directed-broadcast extension
+       2.2.2.  Example
+       2.2.3.  Discussion
+   3.  Security Considerations
+   4.  IANA Considerations
+     4.1.  Directed Broadcasts MUD Extension
+   5.  References
+     5.1.  Normative References
+     5.2.  Informative References
+   Appendix A.  Acknowledgments
+   Appendix B.  Changes
+   Author's Address
+
+1.  Introduction
+
+   Manufacturer Usage Descriptions (MUD) [RFC8520] provide a means to
+   describe device network behavior.  Since its initial standardization,
+   there have been a number of questions and clarifications that have
+   arisen.  The goal of a MUD file is to accurately describe the network
+   behavior of a device in a way that is independent of the network
+   topology.  Primarily the topological concern is local; that is,
+   within an enterprise or home network.  Certain cases make that
+   challenging:
+
+   *  Some devices make use of directed broadcasts, which are not
+      supported in all networks.  When they are, there is a need to
+      understand each and every network segment to which such a device
+      may be attached.
+
+   *  Some devices hardcode certain IP addresses.  MUD itself augments
+      [RFC8519], which specifies an access control list (ACL) schema in
+      YANG.  Within that context, therefore, it should be possible to
+      employ ACLs that match that schema.
+
+   While one could argue whether or not either of these approaches
+   should be used by device manufacturers, the reality is that they are
+   used.  Therefore, MUD should provide a means to describe them.
+
+1.1.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+2.  Clarifications
+
+2.1.  ACLs in MUD
+
+   As mentioned above, RFC 8519 specifies a YANG schema for ACLs.
+   Nothing in the specification prevents the use of ACLs to describe the
+   network behavior of devices in a MUD file.  For example, the
+   following is a valid MUD file that describes a device that is allowed
+   to connect to a cloud service.
+
+   {
+     "ietf-mud:mud": {
+       "mud-version": 1,
+       "mud-url": "https://iot.example.com/modelX.json",
+       "mud-signature": "https://iot.example.com/modelX.p7s",
+       "last-update": "2022-01-05T13:30:31+00:00",
+       "cache-validity": 48,
+       "is-supported": true,
+       "systeminfo": "Sample IoT device",
+       "mfg-name": "Example, Inc.",
+       "documentation": "https://iot.example.com/doc/modelX",
+       "model-name": "modelX",
+       "from-device-policy": {
+         "access-lists": {
+           "access-list": [
+             {
+               "name": "mud-65443-v4fr"
+             }
+           ]
+         }
+       },
+       "to-device-policy": {
+         "access-lists": {
+           "access-list": [
+             {
+               "name": "sample-ipv4-acl"
+             }
+           ]
+         }
+       }
+     },
+     "ietf-access-control-list:acls": {
+       "acl": [
+         {
+           "name": "sample-ipv4-acl",
+           "type": "ipv4-acl-type",
+           "aces": {
+             "ace": [
+               {
+                 "name": "permit-https-to-my-cloud-service",
+                 "matches": {
+                   "ipv4": {
+                     "protocol": 6,
+                     "destination-ipv4-network": "10.1.2.3.4/32"
+                   },
+                   "tcp": {
+                     "destination-port": {
+                       "operator": "eq",
+                       "port": 443
+                     }
+                   }
+                 },
+                 "actions": {
+                   "forwarding": "accept"
+                 }
+               }
+             ]
+           }
+         }
+       ]
+     }
+   }
+
+                     Figure 1: Example ACL in MUD file
+
+   A few cautions about using native IP addresses in MUD files:
+
+   *  They should only ever refer to globally unique addresses that are
+      coordinated by the device manufacturer.
+
+   *  Address changes will necessitate a new MUD file, which must be
+      signed retrieved by mud managers.
+
+2.1.1.  Discussion
+
+   Some device manufacturers will use hardcoded IP addresses to
+   bootstrap functions like the domain name system (DNS).  The use of
+   anycast servers is not uncommon.  Others simply do not want to
+   introduce a dependency on DNS.
+
+2.2.  Directed Broadcasts
+
+   Some devices make use of directed broadcasts to communicate with
+   devices either on the same subnet or on remote networks.  Directed
+   broadcasts require local toplogical knowledge, specifically the
+   subnet mask of the network to which the device is attached.  That
+   information cannot be used across deployments, and so is
+   inappropriate for MUD files.
+
+   To address this, we specify a MUD extension here that indicates that
+   the device uses directed broadcasts.
+
+   Extension name: directed-broadcasts
+
+   A new object is added to the MUD file, called directed-broadcasts.
+   It contains two boolean elements:
+
+   *  inbound: indicates whether the device must receive directed
+      broadcasts.
+
+   *  outbound: indicates whether the device must send directed
+      broadcasts.
+
+2.2.1.  The directed-broadcast extension
+
+   The YANG tree for this extension is as follows:
+
+   module: ietf-mud-directed-broadcasts
+
+     augment /mud:mud:
+       +--rw directed-broadcasts
+          +--rw inbound?    boolean
+          +--rw outbound?   boolean
+
+           Figure 2: YANG tree for directed-broadcasts extension
+
+   The YANG model for this extension is as follows:
+
+module ietf-mud-directed-broadcasts {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-mud-directed-broadcasts";
+  prefix mud-directed-broadcasts;
+
+  import ietf-mud {
+    prefix mud;
+    reference "RFC 8520: Manufacturer Usage Description (MUD)";
+  }
+
+  organization
+    "IETF IOTOPS Working Group";
+  contact
+    "WG Web:   <https://datatracker.ietf.org/wg/iotops/>
+     WG List:  <mailto:iotops@ietf.org>
+     Author:   Eliot Lear <mailto:lear@lear.ch>";
+  description
+    "
+     Copyright (c) 2026 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject to
+     the license terms contained in, the Revised BSD License set
+     forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC XXXX
+     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
+     for full legal notices.
+
+    This module defines a MUD extension for directed broadcasts.";
+  revision 2024-06-01 {
+    description
+      "Initial revision.";
+    reference
+      "RFC XXXX: Some MUD Extensions and Clarifications";
+  }
+  grouping directed-broadcasts-group {
+    description
+      "Indicates whether the device uses directed broadcasts.";
+    container directed-broadcasts {
+      description
+        "Indicates whether the device uses directed broadcasts.";
+      leaf inbound {
+        type boolean;
+        description
+          "Indicates whether the device must receive directed broadcasts.";
+      }
+      leaf outbound {
+        type boolean;
+        description
+          "Indicates whether the device must send directed broadcasts.";
+      }
+    }
+  }
+  augment "/mud:mud" {
+    description
+      "Augments the MUD model with directed-broadcasts.";
+    uses directed-broadcasts-group;
+  }
+}
+
+        Figure 3: YANG model for directed-broadcasts extension
+
+2.2.2.  Example
+
+   The following is an example of a MUD file that indicates that the
+   device uses directed broadcasts in both directions.
+
+   {
+     "ietf-mud:mud": {
+       "mud-version": 1,
+       "mud-url": "https://iot.example.com/modelX.json",
+       "mud-signature": "https://iot.example.com/modelX.p7s",
+       "last-update": "2022-01-05T13:30:31+00:00",
+       "extensions": [
+         "directed-broadcasts"
+       ],
+       "cache-validity": 48,
+       "is-supported": true,
+       "systeminfo": "Sample IoT device",
+       "mfg-name": "Example, Inc.",
+       "documentation": "https://iot.example.com/doc/modelX",
+       "model-name": "modelX",
+       "directed-broadcasts": {
+         "inbound": true,
+         "outbound": true
+       }
+     }
+   }
+
+       Figure 4: Example MUD file with directed-broadcasts extension
+
+   Note that in all likelihood there would also be ACLs in the MUD file,
+   but they are omitted here for brevity.
+
+2.2.3.  Discussion
+
+   Directed broadcasts have well known security issues (see [RFC2644]).
+   However, they are used in circumstances where a limited amount of
+   configuration is considered acceptable, and where other mechanisms
+   such as multicast cannot be expected to be available in *all*
+   deployments.  The purpose of this extension is *not* to encourage the
+   use of directed broadcasts, but rather to provide a means to describe
+   them in MUD files when they are used.
+
+3.  Security Considerations
+
+   The YANG module specified in this document defines a schema for data
+   that is designed to be accessed via network management protocols such
+   as NETCONF [RFC6241] or RESTCONF [RFC8040].  The lowest NETCONF layer
+   is the secure transport layer, and the mandatory-to-implement secure
+   transport is Secure Shell (SSH) [RFC6242].  The lowest RESTCONF layer
+   is HTTPS, and the mandatory-to-implement secure transport is TLS
+   [RFC8446].
+
+   The NETCONF access control model [RFC8341] provides the means to
+   restrict access for particular NETCONF or RESTCONF users to a
+   preconfigured subset of all available NETCONF or RESTCONF protocol
+   operations and content.
+
+   MUD files are intended to be retrieved from a web server, and so the
+   security considerations of [RFC8520] apply.  In addition, see
+   Section 2.2.3 for a discussion of the security implications of
+   directed broadcasts.
+
+4.  IANA Considerations
+
+4.1.  Directed Broadcasts MUD Extension
+
+   IANA is requested to make the following additions to the
+   "Manufacturer Usage Description (MUD) Extensions" registry:
+
+   Name: directed-broadcasts
+   Reference: [RFCXXXX] (this document)
+
+   The following YANG namespace is registered for the directed-
+   broadcasts MUD extension: * Namespace:
+   urn:ietf:params:xml:ns:yang:ietf-mud-directed-broadcasts * Prefix:
+   mud-directed-broadcasts
+
+5.  References
+
+5.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+   [RFC8519]  Jethanandani, M., Agarwal, S., Huang, L., and D. Blair,
+              "YANG Data Model for Network Access Control Lists (ACLs)",
+              RFC 8519, DOI 10.17487/RFC8519, March 2019,
+              <https://www.rfc-editor.org/rfc/rfc8519>.
+
+   [RFC8520]  Lear, E., Droms, R., and D. Romascanu, "Manufacturer Usage
+              Description Specification", RFC 8520,
+              DOI 10.17487/RFC8520, March 2019,
+              <https://www.rfc-editor.org/rfc/rfc8520>.
+
+5.2.  Informative References
+
+   [RFC2644]  Senie, D., "Changing the Default for Directed Broadcasts
+              in Routers", BCP 34, RFC 2644, DOI 10.17487/RFC2644,
+              August 1999, <https://www.rfc-editor.org/rfc/rfc2644>.
+
+   [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
+              and A. Bierman, Ed., "Network Configuration Protocol
+              (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
+              <https://www.rfc-editor.org/rfc/rfc6241>.
+
+   [RFC6242]  Wasserman, M., "Using the NETCONF Protocol over Secure
+              Shell (SSH)", RFC 6242, DOI 10.17487/RFC6242, June 2011,
+              <https://www.rfc-editor.org/rfc/rfc6242>.
+
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <https://www.rfc-editor.org/rfc/rfc8040>.
+
+   [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
+              Access Control Model", STD 91, RFC 8341,
+              DOI 10.17487/RFC8341, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8341>.
+
+   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
+              <https://www.rfc-editor.org/rfc/rfc8446>.
+
+Appendix A.  Acknowledgments
+
+   TODO acknowledge.
+
+Appendix B.  Changes
+
+   *  Initial revision.
+
+Author's Address
+
+   Eliot Lear
+   Cisco Systems, Inc.
+   Email: lear@cisco.com
