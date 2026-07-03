@@ -270,7 +270,26 @@ Note that in all likelihood there would also be ACLs in the MUD file, but they a
 
 Directed broadcasts have well known security issues (see {{?RFC2644}}).  However, they are used in circumstances where a limited amount of configuration is considered acceptable, and where other mechanisms such as multicast cannot be expected to be available in **all** deployments.  The purpose of this extension is **not** to encourage the use of directed broadcasts, but rather to provide a means to describe them in MUD files when they are used.
 
+## Handling of Multicast
 
+{{RFC8520}} does not specify how multicast should be handled.  The reason was that MUD primarily specified abstractions, and multicast is anything but.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.
+
+Unlike directed broadcasts, however, multicast addresses are not typically tied to a local network topology.  For this reason, MUD files MAY contain multicast addresses in ACLs.
+
+To facilitate a better understanding of how a device behaves, an extension is provided to indicate whether a device requires multicast routing.
+
+Extension name: multicast-routing
+
+Note that no new YANG model is specified for this extension, as it is simply a signal that the device requires multicast routing.
+
+## Handling of Broadcasts
+
+{{RFC8520}} does not specify how broadcast should be handled.  Devices may make use of broadcast for many reasons, including discovery, fast failover, expedited processing, and so on.  There are a sufficient number of reasons to use broadcasts, that simply identifying that a device uses broadcasts seems as useful as saying that a device uses IP.
+
+Broadcasts can still be filtered in several ways:
+
+* For outbound use, they MAY be listed in ACLs.
+* For inbound use, the existing abstractions in {{RFC8520}} may be used to authorize the source of the broadcast traffic.
 
 # Security Considerations
 
@@ -297,6 +316,9 @@ IANA is requested to make the following additions to the "Manufacturer Usage Des
 
 ~~~~~
 Name: directed-broadcasts
+Reference: [RFCXXXX] (this document)
+
+Name: multicast-routing
 Reference: [RFCXXXX] (this document)
 ~~~~~
 
