@@ -9,19 +9,19 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: "Operations and Management"
+workgroup: "IOT Operations"
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "IOT Operations"
+  type: "Working Group"
+  mail: "iotops@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/iotops/"
+  github: "elear/draft-lear-mudextras"
+  latest: "https://elear.github.io/draft-lear-mudextras/draft-lear-iotops-mudextras.html"
 
 author:
  -
