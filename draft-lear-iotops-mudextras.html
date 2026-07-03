@@ -1179,6 +1179,12 @@ svg {
 </li>
                 </ul>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-handling-of-multicast" class="internal xref">Handling of Multicast</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4">
+                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="auto internal xref">2.4</a>.  <a href="#name-handling-of-broadcasts" class="internal xref">Handling of Broadcasts</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
@@ -1512,6 +1518,35 @@ module ietf-mud-directed-broadcasts {
 </div>
 </section>
 </div>
+<div id="handling-of-multicast">
+<section id="section-2.3">
+        <h3 id="name-handling-of-multicast">
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-handling-of-multicast" class="section-name selfRef">Handling of Multicast</a>
+        </h3>
+<p id="section-2.3-1"><span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> does not specify how multicast should be handled.  The reason was that MUD primarily specified abstractions, and multicast is anything but.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.3-2">Unlike directed broadcasts, however, multicast addresses are not typically tied to a local network topology.  For this reason, MUD files <span class="bcp14">MAY</span> contain multicast addresses in ACLs.<a href="#section-2.3-2" class="pilcrow">¶</a></p>
+<p id="section-2.3-3">To facilitate a better understanding of how a device behaves, an extension is provided to indicate whether a device requires multicast routing.<a href="#section-2.3-3" class="pilcrow">¶</a></p>
+<p id="section-2.3-4">Extension name: multicast-routing<a href="#section-2.3-4" class="pilcrow">¶</a></p>
+<p id="section-2.3-5">Note that no new YANG model is specified for this extension, as it is simply a signal that the device requires multicast routing.<a href="#section-2.3-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="handling-of-broadcasts">
+<section id="section-2.4">
+        <h3 id="name-handling-of-broadcasts">
+<a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-handling-of-broadcasts" class="section-name selfRef">Handling of Broadcasts</a>
+        </h3>
+<p id="section-2.4-1"><span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> does not specify how broadcast should be handled.  Devices may make use of broadcast for many reasons, including discovery, fast failover, expedited processing, and so on.  There are a sufficient number of reasons to use broadcasts, that simply identifying that a device uses broadcasts seems as useful as saying that a device uses IP.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.4-2">Broadcasts can still be filtered in several ways:<a href="#section-2.4-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.4-3.1">
+            <p id="section-2.4-3.1.1">For outbound use, they <span class="bcp14">MAY</span> be listed in ACLs.<a href="#section-2.4-3.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.4-3.2">
+            <p id="section-2.4-3.2.1">For inbound use, the existing abstractions in <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> may be used to authorize the source of the broadcast traffic.<a href="#section-2.4-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
 </section>
 </div>
 <div id="security-considerations">
@@ -1547,6 +1582,9 @@ operations and content.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.1-2">
 <pre>
 Name: directed-broadcasts
+Reference: [RFCXXXX] (this document)
+
+Name: multicast-routing
 Reference: [RFCXXXX] (this document)
 </pre><a href="#section-4.1-2" class="pilcrow">¶</a>
 </div>

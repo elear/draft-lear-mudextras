@@ -78,6 +78,8 @@ Table of Contents
        2.2.1.  The directed-broadcast extension
        2.2.2.  Example
        2.2.3.  Discussion
+     2.3.  Handling of Multicast
+     2.4.  Handling of Broadcasts
    3.  Security Considerations
    4.  IANA Considerations
      4.1.  Directed Broadcasts MUD Extension
@@ -357,6 +359,43 @@ module ietf-mud-directed-broadcasts {
    use of directed broadcasts, but rather to provide a means to describe
    them in MUD files when they are used.
 
+2.3.  Handling of Multicast
+
+   [RFC8520] does not specify how multicast should be handled.  The
+   reason was that MUD primarily specified abstractions, and multicast
+   is anything but.  Use of multicast for discovery is relatively
+   common.  However, support for multicast beyond the local link is by
+   no means guaranteed.
+
+   Unlike directed broadcasts, however, multicast addresses are not
+   typically tied to a local network topology.  For this reason, MUD
+   files MAY contain multicast addresses in ACLs.
+
+   To facilitate a better understanding of how a device behaves, an
+   extension is provided to indicate whether a device requires multicast
+   routing.
+
+   Extension name: multicast-routing
+
+   Note that no new YANG model is specified for this extension, as it is
+   simply a signal that the device requires multicast routing.
+
+2.4.  Handling of Broadcasts
+
+   [RFC8520] does not specify how broadcast should be handled.  Devices
+   may make use of broadcast for many reasons, including discovery, fast
+   failover, expedited processing, and so on.  There are a sufficient
+   number of reasons to use broadcasts, that simply identifying that a
+   device uses broadcasts seems as useful as saying that a device uses
+   IP.
+
+   Broadcasts can still be filtered in several ways:
+
+   *  For outbound use, they MAY be listed in ACLs.
+
+   *  For inbound use, the existing abstractions in [RFC8520] may be
+      used to authorize the source of the broadcast traffic.
+
 3.  Security Considerations
 
    The YANG module specified in this document defines a schema for data
@@ -385,6 +424,9 @@ module ietf-mud-directed-broadcasts {
    "Manufacturer Usage Description (MUD) Extensions" registry:
 
    Name: directed-broadcasts
+   Reference: [RFCXXXX] (this document)
+
+   Name: multicast-routing
    Reference: [RFCXXXX] (this document)
 
    The following YANG namespace is registered for the directed-
