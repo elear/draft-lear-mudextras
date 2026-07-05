@@ -49,8 +49,7 @@ Experience has shown that certain cases require clarification, and in some cases
 
 * Some devices make use of directed broadcasts, which are not supported in all networks.  When they are, there is a need to understand each and every network segment to which such a device may be attached.
 
-* Some devices hardcode certain IP addresses.
-MUD itself augments {{!RFC8519}}, which specifies an access control list (ACL) schema in YANG.  Within that context, therefore, it should be possible to employ ACLs that match that schema.
+* Some devices hardcode certain IP addresses.  MUD itself augments {{!RFC8519}}, which specifies an access control list (ACL) schema in YANG.  Within that context, therefore, it should be possible to employ ACLs that match that schema.
 
 * Some devices make use of multicast, and in some of those cases, multicast packets may need to be sent or received across network segments.
 
@@ -156,7 +155,7 @@ A new object is added to the MUD file, called directed-broadcasts.  It contains 
 * inbound: indicates whether the device must receive directed broadcasts.
 * outbound: indicates whether the device must send directed broadcasts.
 
-###  The directed-broadcast extension
+### The directed-broadcasts extension
 
 The YANG tree for this extension is as follows:
 
@@ -333,7 +332,7 @@ The following is an example of a MUD file that contains ACLs that permit multica
 ~~~~~
 {:#figmud-multicast-acls title="Example multicast ACLs that can be used in MUD files"}
 
-While this example makes clear that a device may send and receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.  
+While this example makes clear that a device may send and receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.
 
 ### Multicast Across Segments Extension
 
