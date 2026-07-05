@@ -2,7 +2,7 @@
 title: "Some MUD Extensions and Clarifications"
 abbrev: "More MUD"
 category: std
-updates: RFC8520
+updates: 8520
 
 docname: draft-lear-iotops-mudextras-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
