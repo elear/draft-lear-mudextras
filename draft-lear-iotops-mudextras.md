@@ -280,55 +280,26 @@ Directed broadcasts have well known security issues (see {{?RFC2644}}).  However
 
 Unlike directed broadcasts, however, multicast addresses are not typically tied to a local network topology.  For this reason, MUD files MAY contain multicast addresses in ACLs.
 
-The following is an example of a MUD file that contains ACLs that permit multicast traffic in both directions.
+The following ACL fragment can be used by either the to-device or from-device ACL to permit multicast:
 
 ~~~~~
 {
-  "ietf-access-control-list:acls": {
-    "acl": [
-      {
-        "name": "sample-ipv4-multicast-outbound",
-        "type": "ipv4-acl-type",
-        "aces": {
-          "ace": [
-            {
-              "name": "permit-multicast",
-              "matches": {
-                "ipv4": {
-                  "protocol": 17,
-                  "destination-ipv4-network": "224.0.0.0/4"
-                }
-              },
-              "actions": {
-                "forwarding": "accept"
-              }
-            }
-          ]
+  "ace": [
+    {
+      "name": "permit-multicast",
+      "matches": {
+        "ipv4": {
+          "protocol": 17,
+          "destination-ipv4-network": "224.0.0.0/4"
         }
       },
-      {
-        "name": "sample-ipv4-multicast-inbound",
-        "type": "ipv4-acl-type",
-        "aces": {
-          "ace": [
-            {
-              "name": "permit-multicast",
-              "matches": {
-                "ipv4": {
-                  "protocol": 17,
-                  "destination-ipv4-network": "224.0.0.0/4"
-                }
-              },
-              "actions": {
-                "forwarding": "accept"
-              }
-            }
-          ]
-        }
+      "actions": {
+        "forwarding": "accept"
       }
-    ]
-  }
+    }
+  ]
 }
+
 ~~~~~
 {:#figmud-multicast-acls title="Example multicast ACLs that can be used in MUD files"}
 
@@ -340,11 +311,12 @@ Whether a manufacturer intends for multicast packets to go beyond a local segmen
 
 Extension name: multicast-across-segments
 
-
 Note that this extension does not extend the MUD YANG model, but simply provides a warning to the network operator that multicast may be required across segments.
 
 Its use implies that multicast may be required to traverse network segments.
-This will be useful when multicast is intended for purposes **other** than local discovery.  
+This will be useful when multicast is intended for purposes **other** than local discovery.
+
+### Discussion
 
 Examples might include the following:
 
