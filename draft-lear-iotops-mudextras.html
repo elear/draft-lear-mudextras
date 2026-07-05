@@ -15,7 +15,7 @@
 <meta content="draft-lear-iotops-mudextras-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.34.0
-    Python 3.14.6
+    Python 3.14.5
     ConfigArgParse 1.7.5
     google-i18n-address 3.1.1
     intervaltree 3.2.1
@@ -23,9 +23,9 @@
     lxml 6.1.1
     natsort 8.4.0
     platformdirs 4.10.0
-    pycountry 26.2.16
+    pycountry 24.6.1
     PyYAML 6.0.3
-    requests 2.34.2
+    requests 2.33.1
     wcwidth 0.8.2
 -->
 <link href="draft-lear-iotops-mudextras.xml" rel="alternate" type="application/rfc+xml">
@@ -1538,10 +1538,10 @@ module ietf-mud-directed-broadcasts {
         <h3 id="name-handling-of-multicast">
 <a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-handling-of-multicast" class="section-name selfRef">Handling of Multicast</a>
         </h3>
-<p id="section-2.3-1"><span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> does not specify how multicast should be handled.  The reason was that MUD primarily specified abstractions, and multicast is anything but.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.3-1"><span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> does not specify how multicast should be handled.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
 <p id="section-2.3-2">Unlike directed broadcasts, however, multicast addresses are not typically tied to a local network topology.  For this reason, MUD files <span class="bcp14">MAY</span> contain multicast addresses in ACLs.<a href="#section-2.3-2" class="pilcrow">¶</a></p>
 <p id="section-2.3-3">The following ACL fragment can be used by either the to-device or from-device ACL to permit multicast:<a href="#section-2.3-3" class="pilcrow">¶</a></p>
-<span id="name-example-multicast-acls-that"></span><div id="figmud-multicast-acls">
+<span id="name-example-multicast-ace-that-"></span><div id="figmud-multicast-acls">
 <figure id="figure-5">
           <div class="alignLeft art-text artwork" id="section-2.3-4.1">
 <pre>
@@ -1565,10 +1565,10 @@ module ietf-mud-directed-broadcasts {
 </pre>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
-<a href="#name-example-multicast-acls-that" class="selfRef">Example multicast ACLs that can be used in MUD files</a>
+<a href="#name-example-multicast-ace-that-" class="selfRef">Example multicast ACE that can be used in a MUD file</a>
           </figcaption></figure>
 </div>
-<p id="section-2.3-5">While this example makes clear that a device may send and receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.<a href="#section-2.3-5" class="pilcrow">¶</a></p>
+<p id="section-2.3-5">While this example demonstrates how a device may send or receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.<a href="#section-2.3-5" class="pilcrow">¶</a></p>
 <div id="multicast-across-segments-extension">
 <section id="section-2.3.1">
           <h4 id="name-multicast-across-segments-e">
@@ -1576,9 +1576,8 @@ module ietf-mud-directed-broadcasts {
           </h4>
 <p id="section-2.3.1-1">Whether a manufacturer intends for multicast packets to go beyond a local segment is something that can be expressed in the MUD file with the following extension:<a href="#section-2.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.3.1-2">Extension name: multicast-across-segments<a href="#section-2.3.1-2" class="pilcrow">¶</a></p>
-<p id="section-2.3.1-3">Note that this extension does not extend the MUD YANG model, but simply provides a warning to the network operator that multicast may be required across segments.<a href="#section-2.3.1-3" class="pilcrow">¶</a></p>
-<p id="section-2.3.1-4">Its use implies that multicast may be required to traverse network segments.
-This will be useful when multicast is intended for purposes <strong>other</strong> than local discovery.<a href="#section-2.3.1-4" class="pilcrow">¶</a></p>
+<p id="section-2.3.1-3">This extension does not extend the MUD YANG model; its presence in a MUD file simply signals to the network operator that multicast may be required to traverse network segments.<a href="#section-2.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-2.3.1-4">This will be useful when multicast is intended for purposes <strong>other</strong> than local discovery.  On its own it doesn't specify which multicast groups the device may need to join.  An ACL that permits multicast traffic is still required.<a href="#section-2.3.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="discussion-1">
