@@ -378,4 +378,5 @@ TODO acknowledge.
 
 # Changes
 
-* Initial revision.
+* 01: Cleaned up text, added updates header, revisited multicast.
+* 00: Initial revision.
