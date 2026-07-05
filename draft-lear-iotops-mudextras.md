@@ -276,7 +276,7 @@ Directed broadcasts have well known security issues (see {{?RFC2644}}).  However
 
 ## Handling of Multicast
 
-{{RFC8520}} does not specify how multicast should be handled.  The reason was that MUD primarily specified abstractions, and multicast is anything but.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.
+{{RFC8520}} does not specify how multicast should be handled.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.
 
 Unlike directed broadcasts, however, multicast addresses are not typically tied to a local network topology.  For this reason, MUD files MAY contain multicast addresses in ACLs.
 
@@ -301,9 +301,9 @@ The following ACL fragment can be used by either the to-device or from-device AC
 }
 
 ~~~~~
-{:#figmud-multicast-acls title="Example multicast ACLs that can be used in MUD files"}
+{:#figmud-multicast-acls title="Example multicast ACE that can be used in a MUD file"}
 
-While this example makes clear that a device may send and receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.
+While this example demonstrates how a device may send or receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.
 
 ### Multicast Across Segments Extension
 
@@ -311,10 +311,9 @@ Whether a manufacturer intends for multicast packets to go beyond a local segmen
 
 Extension name: multicast-across-segments
 
-Note that this extension does not extend the MUD YANG model, but simply provides a warning to the network operator that multicast may be required across segments.
+This extension does not extend the MUD YANG model; its presence in a MUD file simply signals to the network operator that multicast may be required to traverse network segments.
 
-Its use implies that multicast may be required to traverse network segments.
-This will be useful when multicast is intended for purposes **other** than local discovery.
+This will be useful when multicast is intended for purposes **other** than local discovery.  On its own it doesn't specify which multicast groups the device may need to join.  An ACL that permits multicast traffic is still required.
 
 ### Discussion
 
