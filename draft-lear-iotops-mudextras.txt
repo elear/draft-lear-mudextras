@@ -81,6 +81,7 @@ Table of Contents
        2.2.3.  Discussion
      2.3.  Handling of Multicast
        2.3.1.  Multicast Across Segments Extension
+       2.3.2.  Discussion
      2.4.  Handling of Broadcasts
    3.  Security Considerations
    4.  IANA Considerations
@@ -386,54 +387,24 @@ module ietf-mud-directed-broadcasts {
    typically tied to a local network topology.  For this reason, MUD
    files MAY contain multicast addresses in ACLs.
 
-   The following is an example of a MUD file that contains ACLs that
-   permit multicast traffic in both directions.
+   The following ACL fragment can be used by either the to-device or
+   from-device ACL to permit multicast:
 
    {
-     "ietf-access-control-list:acls": {
-       "acl": [
-         {
-           "name": "sample-ipv4-multicast-outbound",
-           "type": "ipv4-acl-type",
-           "aces": {
-             "ace": [
-               {
-                 "name": "permit-multicast",
-                 "matches": {
-                   "ipv4": {
-                     "protocol": 17,
-                     "destination-ipv4-network": "224.0.0.0/4"
-                   }
-                 },
-                 "actions": {
-                   "forwarding": "accept"
-                 }
-               }
-             ]
+     "ace": [
+       {
+         "name": "permit-multicast",
+         "matches": {
+           "ipv4": {
+             "protocol": 17,
+             "destination-ipv4-network": "224.0.0.0/4"
            }
          },
-         {
-           "name": "sample-ipv4-multicast-inbound",
-           "type": "ipv4-acl-type",
-           "aces": {
-             "ace": [
-               {
-                 "name": "permit-multicast",
-                 "matches": {
-                   "ipv4": {
-                     "protocol": 17,
-                     "destination-ipv4-network": "224.0.0.0/4"
-                   }
-                 },
-                 "actions": {
-                   "forwarding": "accept"
-                 }
-               }
-             ]
-           }
+         "actions": {
+           "forwarding": "accept"
          }
-       ]
-     }
+       }
+     ]
    }
 
        Figure 5: Example multicast ACLs that can be used in MUD files
@@ -457,6 +428,8 @@ module ietf-mud-directed-broadcasts {
    Its use implies that multicast may be required to traverse network
    segments.  This will be useful when multicast is intended for
    purposes *other* than local discovery.
+
+2.3.2.  Discussion
 
    Examples might include the following:
 
