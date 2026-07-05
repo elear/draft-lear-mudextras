@@ -333,16 +333,27 @@ The following is an example of a MUD file that contains ACLs that permit multica
 ~~~~~
 {:#figmud-multicast-acls title="Example multicast ACLs that can be used in MUD files"}
 
-While this example makes clear that a device may send and receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.  Whether a manufacturer intends for multicast packets to go beyond a local segment is something that can be expressed in the MUD file with the following extension:
+While this example makes clear that a device may send and receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.  
+
+### Multicast Across Segments Extension
+
+Whether a manufacturer intends for multicast packets to go beyond a local segment is something that can be expressed in the MUD file with the following extension:
 
 Extension name: multicast-across-segments
 
+
+Note that this extension does not extend the MUD YANG model, but simply provides a warning to the network operator that multicast may be required across segments.
+
 Its use implies that multicast may be required to traverse network segments.
-This will be useful when multicast is intended for purposes **other** than local discovery.  For instance, if a controller requires consistent behavior across a set of devices in a timely fashion, it may use multicast to communicate with all of them.
+This will be useful when multicast is intended for purposes **other** than local discovery.  
 
-Another example may be a smoke detector that is part of a building-wide alarm system.  If one smoke detector detects smoke, it may multicast a message to audible and visual alarms throughout the building to sound the alarm.
+Examples might include the following:
 
-On-hold music is a historical example, where music is distributed via multicast.
+* A controller that requires consistent behavior across a set of devices in a timely fashion. It may use multicast to communicate with all of them.
+
+* A smoke detector that is part of a building-wide alarm system.  If one smoke detector detects smoke, it may multicast a message to audible and visual alarms throughout the building to sound the alarm.
+
+* On-hold music is a historical example, where music is distributed via multicast.
 
 Note that operational issues associated with multicast, such as the scope of a multicast group, are outside the scope of this document.  Here we are merely documenting the device's behavior and network requirements.
 
