@@ -259,7 +259,7 @@ The following is an example of a MUD file that indicates that the device uses di
     "mfg-name": "Example, Inc.",
     "documentation": "https://iot.example.com/doc/modelX",
     "model-name": "modelX",
-    "directed-broadcasts": {
+    "mud-directed-broadcasts:directed-broadcasts": {
       "inbound": true,
       "outbound": true
     }
