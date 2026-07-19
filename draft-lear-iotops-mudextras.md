@@ -136,11 +136,15 @@ As mentioned above, RFC 8519 specifies a YANG schema for ACLs.  Nothing in the s
 A few cautions about using native IP addresses in MUD files:
 
 * They should only ever refer to globally unique addresses that are coordinated by the device manufacturer.
-* Address changes will necessitate a new MUD file, which must be signed and retrieved by MUD managers.
+* Address changes will necessitate a new MUD file, which must be signed and retrieved by MUD managers (see {{?I-D.iotops-acceptable-urls}} about MUD updates)
 
 ### Discussion
 
-Some device manufacturers will use hardcoded IP addresses to bootstrap functions like the domain name system (DNS).  The use of anycast servers is not uncommon.  Others simply do not want to introduce a dependency on DNS.
+Some device manufacturers will use hardcoded IP addresses to bootstrap functions like the domain name system (DNS).
+The use an open resolver {{?RFC9499}} is common.
+Vendors are encouraged to always use DHCP and RA provided DNS servers {{?RFC9726}}.
+
+Others simply do not want to introduce any dependency on DNS, and prefer to hard code the IPv4 and IPv6 addresses.
 
 ## Directed Broadcasts
 
