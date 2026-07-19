@@ -146,6 +146,65 @@ Vendors are encouraged to always use DHCP and RA provided DNS servers {{?RFC9726
 
 Others simply do not want to introduce any dependency on DNS, and prefer to hard code the IPv4 and IPv6 addresses.
 
+## Handling of Multicast
+
+{{RFC8520}} does not specify how multicast should be handled.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.
+
+Unlike directed broadcasts, however, multicast addresses are not typically tied to a local network topology.  For this reason, MUD files MAY contain multicast addresses in ACLs.
+
+The following ACL fragment can be used by either the to-device or from-device ACL to permit multicast:
+
+~~~~~
+{
+  "ace": [
+    {
+      "name": "permit-multicast",
+      "matches": {
+        "ipv4": {
+          "protocol": 17,
+          "destination-ipv4-network": "224.0.0.0/4"
+        }
+      },
+      "actions": {
+        "forwarding": "accept"
+      }
+    }
+  ]
+}
+
+~~~~~
+{:#figmud-multicast-acls title="Example multicast ACE that can be used in a MUD file"}
+
+While this example demonstrates how a device may send or receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.
+
+### Multicast Across Segments Extension
+
+Whether a manufacturer intends for multicast packets to go beyond a local segment is something that can be expressed in the MUD file with the following extension:
+
+Extension name: multicast-across-segments
+
+This extension does not extend the MUD YANG model; its presence in a MUD file simply signals to the network operator that multicast may be required to traverse network segments.
+
+This will be useful when multicast is intended for purposes **other** than local discovery.  On its own it doesn't specify which multicast groups the device may need to join.  An ACL that permits multicast traffic is still required.
+
+### Discussion
+
+Examples might include the following:
+
+* A controller that requires consistent behavior across a set of devices in a timely fashion. It may use multicast to communicate with all of them.
+
+* A smoke detector that is part of a building-wide alarm system.  If one smoke detector detects smoke, it may multicast a message to audible and visual alarms throughout the building to sound the alarm.
+
+* On-hold music is a historical example, where music is distributed via multicast.
+
+Note that operational issues associated with multicast, such as the scope of a multicast group, are outside the scope of this document.  Here we are merely documenting the device's behavior and network requirements.
+
+## Handling of Broadcasts
+
+{{RFC8520}} does not specify how broadcast should be handled.  Devices may make use of broadcast for many reasons, including discovery, fast failover, expedited processing, and so on.  There are a sufficient number of reasons to use broadcasts, that simply identifying that a device uses broadcasts seems as useful as saying that a device uses IP.  Therefore, in the context of MUD, all devices are assumed to both send and receive broadcasts.
+
+# Extensions
+
 ## Directed Broadcasts
 
 Some devices make use of directed broadcasts to communicate with devices either on the same subnet or on remote networks.  Directed broadcasts require local topological knowledge, specifically the subnet mask of the network to which the device is attached.  That information cannot be used across deployments, and so is inappropriate for MUD files.
@@ -277,63 +336,6 @@ Note that in all likelihood there would also be ACLs in the MUD file, but they a
 ### Discussion {#dibroaddisc}
 
 Directed broadcasts have well known security issues (see {{?RFC2644}}).  However, they are used in circumstances where a limited amount of configuration is considered acceptable, and where other mechanisms such as multicast cannot be expected to be available in **all** deployments.  The purpose of this extension is **not** to encourage the use of directed broadcasts, but rather to provide a means to describe them in MUD files when they are used.
-
-## Handling of Multicast
-
-{{RFC8520}} does not specify how multicast should be handled.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.
-
-Unlike directed broadcasts, however, multicast addresses are not typically tied to a local network topology.  For this reason, MUD files MAY contain multicast addresses in ACLs.
-
-The following ACL fragment can be used by either the to-device or from-device ACL to permit multicast:
-
-~~~~~
-{
-  "ace": [
-    {
-      "name": "permit-multicast",
-      "matches": {
-        "ipv4": {
-          "protocol": 17,
-          "destination-ipv4-network": "224.0.0.0/4"
-        }
-      },
-      "actions": {
-        "forwarding": "accept"
-      }
-    }
-  ]
-}
-
-~~~~~
-{:#figmud-multicast-acls title="Example multicast ACE that can be used in a MUD file"}
-
-While this example demonstrates how a device may send or receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.
-
-### Multicast Across Segments Extension
-
-Whether a manufacturer intends for multicast packets to go beyond a local segment is something that can be expressed in the MUD file with the following extension:
-
-Extension name: multicast-across-segments
-
-This extension does not extend the MUD YANG model; its presence in a MUD file simply signals to the network operator that multicast may be required to traverse network segments.
-
-This will be useful when multicast is intended for purposes **other** than local discovery.  On its own it doesn't specify which multicast groups the device may need to join.  An ACL that permits multicast traffic is still required.
-
-### Discussion
-
-Examples might include the following:
-
-* A controller that requires consistent behavior across a set of devices in a timely fashion. It may use multicast to communicate with all of them.
-
-* A smoke detector that is part of a building-wide alarm system.  If one smoke detector detects smoke, it may multicast a message to audible and visual alarms throughout the building to sound the alarm.
-
-* On-hold music is a historical example, where music is distributed via multicast.
-
-Note that operational issues associated with multicast, such as the scope of a multicast group, are outside the scope of this document.  Here we are merely documenting the device's behavior and network requirements.
-
-## Handling of Broadcasts
-
-{{RFC8520}} does not specify how broadcast should be handled.  Devices may make use of broadcast for many reasons, including discovery, fast failover, expedited processing, and so on.  There are a sufficient number of reasons to use broadcasts, that simply identifying that a device uses broadcasts seems as useful as saying that a device uses IP.  Therefore, in the context of MUD, all devices are assumed to both send and receive broadcasts.
 
 # Security Considerations
 
