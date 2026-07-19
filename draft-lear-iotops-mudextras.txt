@@ -4,9 +4,9 @@
 
 IOT Operations                                                   E. Lear
 Internet-Draft                                       Cisco Systems, Inc.
-Updates: 8520 (if approved)                                  5 July 2026
+Updates: 8520 (if approved)                                 19 July 2026
 Intended status: Standards Track                                        
-Expires: 6 January 2027
+Expires: 20 January 2027
 
 
                  Some MUD Extensions and Clarifications
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 January 2027.
+   This Internet-Draft will expire on 20 January 2027.
 
 Copyright Notice
 
@@ -353,7 +353,7 @@ module ietf-mud-directed-broadcasts {
        "mfg-name": "Example, Inc.",
        "documentation": "https://iot.example.com/doc/modelX",
        "model-name": "modelX",
-       "directed-broadcasts": {
+       "mud-directed-broadcasts:directed-broadcasts": {
          "inbound": true,
          "outbound": true
        }
