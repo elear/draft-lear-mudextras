@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-19T02:53:12.521890+00:00",
+  "timestamp": "2026-07-21T02:49:55.297527+00:00",
   "repo": "elear/draft-lear-mudextras",
   "labels": [
     {
@@ -50,5 +50,32 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOTMien87zg2Wr",
+      "title": "some minor edits/contributions",
+      "url": "https://github.com/elear/draft-lear-mudextras/pull/1",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-07-19T10:04:44Z",
+      "updatedAt": "2026-07-19T10:07:40Z",
+      "baseRepository": "elear/draft-lear-mudextras",
+      "baseRefName": "main",
+      "baseRefOid": "3a79206360aa521c10d92ab4b16ec58cedbb62dd",
+      "headRepository": "mcr/draft-lear-mudextras",
+      "headRefName": "mcr-comments-edits",
+      "headRefOid": "e8c8c8564ee42a0c90a7cfff13c0ca054be569c6",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
