@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-06T02:42:22.667167+00:00",
+  "timestamp": "2026-08-09T01:51:23.635771+00:00",
   "repo": "elear/draft-lear-mudextras",
   "labels": [
     {
@@ -63,7 +63,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2026-07-19T10:04:44Z",
-      "updatedAt": "2026-07-19T10:07:40Z",
+      "updatedAt": "2026-08-06T20:59:35Z",
       "baseRepository": "elear/draft-lear-mudextras",
       "baseRefName": "main",
       "baseRefOid": "3a79206360aa521c10d92ab4b16ec58cedbb62dd",
@@ -74,7 +74,22 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "elear",
+          "authorAssociation": "OWNER",
+          "body": "I can't actually see what changed with multicast.  Did you refold?",
+          "createdAt": "2026-08-06T11:30:45Z",
+          "updatedAt": "2026-08-06T11:30:45Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "NONE",
+          "body": "> I can't actually see what changed with multicast. Did you refold?\r\n\r\nGood question, what did I do...\r\nOh, I moved multicast up, as a clarification, as it's not a new extension.\r\nSo that extensions are grouped, and clarifications are grouped.\r\nI did do that in a commit different from the other edits, but they get grouped under Files Changes.\r\nShould have made that two PRs, via stacked PRs, I guess.",
+          "createdAt": "2026-08-06T20:58:11Z",
+          "updatedAt": "2026-08-06T20:59:35Z"
+        }
+      ],
       "reviews": []
     }
   ]
