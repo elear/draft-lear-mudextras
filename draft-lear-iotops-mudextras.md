@@ -348,7 +348,7 @@ Directed broadcasts have well known security issues (see {{?RFC2644}}).  However
 
 ## Inclusion of icons
 
-Sometimes it is useful to visualize a network of devices.  Having an icon associated with a device can improve readability.  Icons SHOULD follow the guidance given in {{PWG5100.13}}.
+Sometimes it is useful to visualize a network of devices.  Having an icon associated with a device can improve readability.  Icons SHOULD follow the guidance given in {{PWG5100.13}}, with the exception that the HTTP schema MUST NOT be used.
 
 Extension name: icons
 
