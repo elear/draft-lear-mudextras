@@ -30,6 +30,19 @@ author:
     email: "lear@cisco.com"
 
 normative:
+  PWG5100.13:
+    title: "IPP: Job and Printer Extensions -- Set 3 (JPS3)"
+    author:
+    - name: Michael Sweet
+      ins: M. Sweet
+    - name: Ira McDonald
+      ins: I. McDonald
+    - name: Peter Zehler
+      ins: P. Zehler
+    date: 2012-07
+    target: http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf
+    seriesinfo:
+      PWG: 5100.13
 
 informative:
 
@@ -65,7 +78,9 @@ This memo updates {{!RFC8520}} by clarifying that IP-based ACLs MAY be used in M
 
 ## ACLs in MUD
 
-As mentioned above, RFC 8519 specifies a YANG schema for ACLs.  Nothing in the specification prevents the use of ACLs to describe the network behavior of devices in a MUD file.  For example, the following is a valid MUD file that describes a device that is allowed to connect to a cloud service.
+As mentioned above, RFC 8519 specifies a YANG schema for ACLs.  {{RFC8520}} discourages the use of IP addresses in MUD files.  However, that advice was too broad.  As we will discuss below, IP addresses are permitted in MUD files since they are based on {{!RFC8519}}.  However, they should only be used when the IP addresses are globally unique and are coordinated by the publisher of the MUD file.
+
+For example, the following is a valid MUD file that describes a device that is allowed to connect to a cloud service.
 
 ~~~~~
 {
@@ -84,7 +99,7 @@ As mentioned above, RFC 8519 specifies a YANG schema for ACLs.  Nothing in the s
       "access-lists": {
         "access-list": [
           {
-            "name": "mud-65443-v4fr"
+            "name": "sample-ipv4-acl"
           }
         ]
       }
@@ -133,26 +148,17 @@ As mentioned above, RFC 8519 specifies a YANG schema for ACLs.  Nothing in the s
 ~~~~~
 {:#figacl title="Example ACL in MUD file"}
 
-A few cautions about using native IP addresses in MUD files:
-
-* They should only ever refer to globally unique addresses that are coordinated by the device manufacturer.
-* Address changes will necessitate a new MUD file, which must be signed and retrieved by MUD managers (see {{?I-D.iotops-acceptable-urls}} about MUD updates)
-
 ### Discussion
 
-Some device manufacturers will use hardcoded IP addresses to bootstrap functions like the domain name system (DNS).
-The use an open resolver {{?RFC9499}} is common.
-Vendors are encouraged to always use DHCP and RA provided DNS servers {{?RFC9726}}.
-
-Others simply do not want to introduce any dependency on DNS, and prefer to hard code the IPv4 and IPv6 addresses.
+Some device manufacturers will use hardcoded IP addresses to bootstrap functions like the domain name system (DNS).  In other cases, DNS isn't used at all.  These addresses may refer directly to an anycast function such as a public DNS resolver, or to specific servers operated by the device manufacturer.  This memo does not pass judgment on these uses, but rather describes the use so that it can be properly documented.
 
 ## Handling of Multicast
 
 {{RFC8520}} does not specify how multicast should be handled.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.
 
-Unlike directed broadcasts, however, multicast addresses are not typically tied to a local network topology.  For this reason, MUD files MAY contain multicast addresses in ACLs.
+Because multicast addresses are not typically tied to a local network topology, MUD files MAY contain multicast addresses in ACLs.  When used, specific multicast addresses SHOULD be used.
 
-The following ACL fragment can be used by either the to-device or from-device ACL to permit multicast:
+The following ACL fragment can be used by either the to-device or from-device ACL to permit packets to or from a specific multicast address:
 
 ~~~~~
 {
@@ -162,7 +168,7 @@ The following ACL fragment can be used by either the to-device or from-device AC
       "matches": {
         "ipv4": {
           "protocol": 17,
-          "destination-ipv4-network": "224.0.0.0/4"
+          "destination-ipv4-network": "224.8.5.1/32"
         }
       },
       "actions": {
@@ -175,9 +181,15 @@ The following ACL fragment can be used by either the to-device or from-device AC
 ~~~~~
 {:#figmud-multicast-acls title="Example multicast ACE that can be used in a MUD file"}
 
-While this example demonstrates how a device may send or receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.
+While this example demonstrates how to describe how a device sends or receives multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.  That will be discussed in the next section.
 
-### Multicast Across Segments Extension
+## Handling of Broadcasts
+
+{{RFC8520}} does not specify how broadcast should be handled.  Devices make use of broadcast for many reasons, including discovery, fast failover, expedited processing, and so on.  We distinguish transmission and receipt of broadcasts: it is RECOMMENDED that MUD managers enable the ability of devices to transmit broadcasts.  It is also possible to specify a broadcast address in an ACL.  Receipt of broadcasts SHOULD be governed by who is sending them; device should receive broadcasts only from authorized sources, as specified in the MUD file.  This is particularly important for constrained devices that may be overwhelmed by unneeded and unwanted broadcast (or any other) traffic.
+
+# Extensions
+
+## Multicast Across Segments Extension
 
 Whether a manufacturer intends for multicast packets to go beyond a local segment is something that can be expressed in the MUD file with the following extension:
 
@@ -197,13 +209,10 @@ Examples might include the following:
 
 * On-hold music is a historical example, where music is distributed via multicast.
 
+* Local gaming, where participants may span multiple network segments.
+
 Note that operational issues associated with multicast, such as the scope of a multicast group, are outside the scope of this document.  Here we are merely documenting the device's behavior and network requirements.
 
-## Handling of Broadcasts
-
-{{RFC8520}} does not specify how broadcast should be handled.  Devices may make use of broadcast for many reasons, including discovery, fast failover, expedited processing, and so on.  There are a sufficient number of reasons to use broadcasts, that simply identifying that a device uses broadcasts seems as useful as saying that a device uses IP.  Therefore, in the context of MUD, all devices are assumed to both send and receive broadcasts.
-
-# Extensions
 
 ## Directed Broadcasts
 
@@ -337,9 +346,122 @@ Note that in all likelihood there would also be ACLs in the MUD file, but they a
 
 Directed broadcasts have well known security issues (see {{?RFC2644}}).  However, they are used in circumstances where a limited amount of configuration is considered acceptable, and where other mechanisms such as multicast cannot be expected to be available in **all** deployments.  The purpose of this extension is **not** to encourage the use of directed broadcasts, but rather to provide a means to describe them in MUD files when they are used.
 
+## Inclusion of icons
+
+Sometimes it is useful to visualize a network of devices.  Having an icon associated with a device can improve readability.  Icons SHOULD follow the guidance given in {{PWG5100.13}}.
+
+Extension name: icons
+
+The `icons` extension adds an array of icon URLs to the MUD file.  Each entry MAY use any URI scheme accepted by `inet:uri`, including the `data` URI scheme defined by {{!RFC2397}}.  A publisher that uses this extension MUST include `icons` in the MUD `extensions` leaf-list.
+
+### The icons extension
+
+The YANG tree for this extension is as follows:
+
+~~~~
+module: ietf-mud-icons
+
+  augment /mud:mud:
+    +--rw icons*   inet:uri
+~~~~
+{:#figmud-icons title="YANG tree for icons extension"}
+
+The YANG model for this extension is as follows:
+
+~~~~~
+module ietf-mud-icons {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-mud-icons";
+  prefix mud-icons;
+
+  import ietf-inet-types {
+    prefix inet;
+    reference
+      "RFC 6991: Common YANG Data Types";
+  }
+
+  import ietf-mud {
+    prefix mud;
+    reference
+      "RFC 8520: Manufacturer Usage Description (MUD)";
+  }
+
+  organization
+    "IETF IOTOPS Working Group";
+  contact
+    "WG Web:   <https://datatracker.ietf.org/wg/iotops/>
+     WG List:  <mailto:iotops@ietf.org>
+     Author:   Eliot Lear <mailto:lear@lear.ch>";
+  description
+    "This module defines a MUD extension for device icons.
+
+     Copyright (c) 2026 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject to
+     the license terms contained in, the Revised BSD License set
+     forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC XXXX
+     (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
+     for full legal notices.";
+
+  revision 2026-08-11 {
+    description
+      "Initial revision.";
+    reference
+      "RFC XXXX: Some MUD Extensions and Clarifications";
+  }
+
+  augment "/mud:mud" {
+    description
+      "Augments the MUD model with icon URLs.";
+    leaf-list icons {
+      type inet:uri;
+      description
+        "URLs for icons representing the device.  The data URI
+         scheme is permitted.";
+    }
+  }
+}
+~~~~~
+{:#figmud-icons-yang title="YANG model for icons extension"}
+
+### Example
+
+~~~~~
+{
+  "ietf-mud:mud": {
+    "mud-version": 1,
+    "mud-url": "https://iot.example.com/modelX.json",
+    "mud-signature": "https://iot.example.com/modelX.p7s",
+    "last-update": "2026-08-11T13:30:31+00:00",
+    "extensions": [
+      "icons"
+    ],
+    "cache-validity": 48,
+    "is-supported": true,
+    "systeminfo": "Sample IoT device",
+    "mfg-name": "Example, Inc.",
+    "model-name": "modelX",
+    "ietf-mud-icons:icons": [
+      "https://example.com/icons/modelX-48x48.png",
+      "https://example.com/icons/modelX-128x128.png",
+      "https://example.com/icons/modelX-512x512.png"
+    ]
+  }
+}
+~~~~~
+{:#figmud-icons-example title="Example MUD file with icons extension"}
+
+Here we have three icons, each with a different size.
+
 # Security Considerations
 
-The YANG module specified in this document defines a schema for data
+The YANG modules specified in this document define schemas for data
 that is designed to be accessed via network management protocols such
 as NETCONF {{?RFC6241}} or RESTCONF {{?RFC8040}}.  The lowest NETCONF layer
 is the secure transport layer, and the mandatory-to-implement secure
@@ -356,7 +478,7 @@ MUD files are intended to be retrieved from a web server, and so the security co
 
 # IANA Considerations
 
-## Directed Broadcasts MUD Extension
+## MUD Extension and YANG Namespace Registrations
 
 IANA is requested to make the following additions to the "Manufacturer Usage Description (MUD) Extensions" registry:
 
@@ -370,19 +492,33 @@ Name: multicast-across-segments
 Reference: [RFCXXXX] (this document)
 ~~~~~
 
-The following YANG namespace is registered for the directed-broadcasts MUD extension:
+~~~~~
+Name: icons
+Reference: [RFCXXXX] (this document)
+~~~~~
+
+The following YANG namespaces are registered:
 
 * Namespace: urn:ietf:params:xml:ns:yang:ietf-mud-directed-broadcasts
 * Prefix: mud-directed-broadcasts
+
+* Namespace: urn:ietf:params:xml:ns:yang:ietf-mud-icons
+* Prefix: mud-icons
 
 
 --- back
 
 # Acknowledgments
 
-TODO acknowledge.
+Thanks to Michael Richardson for the reorganized text, and to Michael Sweet for his
+input on how to include icons.
 
 # Changes
 
+* 02:
+  * Reorganization based on MCR PR.
+  * Repair ACL name.
+  * Separate out sending and receiving of broadcasts.
+  * Add the icons extension and an example with three icon sizes.
 * 01: Cleaned up text, added updates header, revisited multicast.
 * 00: Initial revision.
