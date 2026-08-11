@@ -22,7 +22,7 @@
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.10.1
+    platformdirs 4.11.0
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -62,7 +62,6 @@
   src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-
 @font-face {
   font-family: 'Lora';
   font-style: italic;
@@ -111,7 +110,6 @@
   src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
 @font-face {
   font-family: 'Lora';
   font-style: normal;
@@ -176,7 +174,6 @@
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 }
 
 @font-face {
@@ -1045,11 +1042,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">More MUD</td>
-<td class="right">July 2026</td>
+<td class="right">August 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Lear</td>
-<td class="center">Expires 20 January 2027</td>
+<td class="center">Expires 12 February 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1062,12 @@ svg {
 <a href="https://www.rfc-editor.org/rfc/rfc8520" class="eref">8520</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-19" class="published">19 July 2026</time>
+<time datetime="2026-08-11" class="published">11 August 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-20">20 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-02-12">12 February 2027</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1120,7 +1117,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 12 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1169,65 +1166,70 @@ svg {
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
-                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-directed-broadcasts" class="internal xref">Directed Broadcasts</a></p>
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-handling-of-multicast" class="internal xref">Handling of Multicast</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.1">
-                    <p id="section-toc.1-1.2.2.2.2.1.1"><a href="#section-2.2.1" class="auto internal xref">2.2.1</a>.  <a href="#name-the-directed-broadcasts-ext" class="internal xref">The directed-broadcasts extension</a></p>
+                    <p id="section-toc.1-1.2.2.2.2.1.1"><a href="#section-2.2.1" class="auto internal xref">2.2.1</a>.  <a href="#name-multicast-across-segments-e" class="internal xref">Multicast Across Segments Extension</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.2">
-                    <p id="section-toc.1-1.2.2.2.2.2.1"><a href="#section-2.2.2" class="auto internal xref">2.2.2</a>.  <a href="#name-example" class="internal xref">Example</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.3">
-                    <p id="section-toc.1-1.2.2.2.2.3.1"><a href="#section-2.2.3" class="auto internal xref">2.2.3</a>.  <a href="#name-discussion-2" class="internal xref">Discussion</a></p>
+                    <p id="section-toc.1-1.2.2.2.2.2.1"><a href="#section-2.2.2" class="auto internal xref">2.2.2</a>.  <a href="#name-discussion-2" class="internal xref">Discussion</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
-                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-handling-of-multicast" class="internal xref">Handling of Multicast</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3.2.1">
-                    <p id="section-toc.1-1.2.2.3.2.1.1"><a href="#section-2.3.1" class="auto internal xref">2.3.1</a>.  <a href="#name-multicast-across-segments-e" class="internal xref">Multicast Across Segments Extension</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3.2.2">
-                    <p id="section-toc.1-1.2.2.3.2.2.1"><a href="#section-2.3.2" class="auto internal xref">2.3.2</a>.  <a href="#name-discussion-3" class="internal xref">Discussion</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4">
-                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="auto internal xref">2.4</a>.  <a href="#name-handling-of-broadcasts" class="internal xref">Handling of Broadcasts</a></p>
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-handling-of-broadcasts" class="internal xref">Handling of Broadcasts</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-extensions" class="internal xref">Extensions</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-directed-broadcasts-mud-ext" class="internal xref">Directed Broadcasts MUD Extension</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-directed-broadcasts" class="internal xref">Directed Broadcasts</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
+                    <p id="section-toc.1-1.3.2.1.2.1.1"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-the-directed-broadcasts-ext" class="internal xref">The directed-broadcasts extension</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
+                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-example" class="internal xref">Example</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.3">
+                    <p id="section-toc.1-1.3.2.1.2.3.1"><a href="#section-3.1.3" class="auto internal xref">3.1.3</a>.  <a href="#name-discussion-3" class="internal xref">Discussion</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-directed-broadcasts-mud-ext" class="internal xref">Directed Broadcasts MUD Extension</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-changes" class="internal xref">Changes</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-changes" class="internal xref">Changes</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1355,7 +1357,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
             <p id="section-2.1-4.1.1">They should only ever refer to globally unique addresses that are coordinated by the device manufacturer.<a href="#section-2.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.1-4.2">
-            <p id="section-2.1-4.2.1">Address changes will necessitate a new MUD file, which must be signed and retrieved by MUD managers.<a href="#section-2.1-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-2.1-4.2.1">Address changes will necessitate a new MUD file, which must be signed and retrieved by MUD managers (see <span>[<a href="#I-D.iotops-acceptable-urls" class="cite xref">I-D.iotops-acceptable-urls</a>]</span> about MUD updates)<a href="#section-2.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <div id="discussion">
@@ -1363,37 +1365,124 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
           <h4 id="name-discussion">
 <a href="#section-2.1.1" class="section-number selfRef">2.1.1. </a><a href="#name-discussion" class="section-name selfRef">Discussion</a>
           </h4>
-<p id="section-2.1.1-1">Some device manufacturers will use hardcoded IP addresses to bootstrap functions like the domain name system (DNS).  The use of anycast servers is not uncommon.  Others simply do not want to introduce a dependency on DNS.<a href="#section-2.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.1-1">Some device manufacturers will use hardcoded IP addresses to bootstrap functions like the domain name system (DNS).
+The use an open resolver <span>[<a href="#RFC9499" class="cite xref">RFC9499</a>]</span> is common.
+Vendors are encouraged to always use DHCP and RA provided DNS servers <span>[<a href="#RFC9726" class="cite xref">RFC9726</a>]</span>.<a href="#section-2.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.1-2">Others simply do not want to introduce any dependency on DNS, and prefer to hard code the IPv4 and IPv6 addresses.<a href="#section-2.1.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
-<div id="directed-broadcasts">
+<div id="handling-of-multicast">
 <section id="section-2.2">
-        <h3 id="name-directed-broadcasts">
-<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-directed-broadcasts" class="section-name selfRef">Directed Broadcasts</a>
+        <h3 id="name-handling-of-multicast">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-handling-of-multicast" class="section-name selfRef">Handling of Multicast</a>
         </h3>
-<p id="section-2.2-1">Some devices make use of directed broadcasts to communicate with devices either on the same subnet or on remote networks.  Directed broadcasts require local topological knowledge, specifically the subnet mask of the network to which the device is attached.  That information cannot be used across deployments, and so is inappropriate for MUD files.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
-<p id="section-2.2-2">To address this, we specify a MUD extension here that indicates that the device uses directed broadcasts.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
-<p id="section-2.2-3">Extension name: directed-broadcasts<a href="#section-2.2-3" class="pilcrow">¶</a></p>
-<p id="section-2.2-4">A new object is added to the MUD file, called directed-broadcasts.  It contains two boolean elements:<a href="#section-2.2-4" class="pilcrow">¶</a></p>
+<p id="section-2.2-1"><span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> does not specify how multicast should be handled.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2-2">Unlike directed broadcasts, however, multicast addresses are not typically tied to a local network topology.  For this reason, MUD files <span class="bcp14">MAY</span> contain multicast addresses in ACLs.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.2-3">The following ACL fragment can be used by either the to-device or from-device ACL to permit multicast:<a href="#section-2.2-3" class="pilcrow">¶</a></p>
+<span id="name-example-multicast-ace-that-"></span><div id="figmud-multicast-acls">
+<figure id="figure-2">
+          <div class="alignLeft art-text artwork" id="section-2.2-4.1">
+<pre>
+{
+  "ace": [
+    {
+      "name": "permit-multicast",
+      "matches": {
+        "ipv4": {
+          "protocol": 17,
+          "destination-ipv4-network": "224.0.0.0/4"
+        }
+      },
+      "actions": {
+        "forwarding": "accept"
+      }
+    }
+  ]
+}
+
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-example-multicast-ace-that-" class="selfRef">Example multicast ACE that can be used in a MUD file</a>
+          </figcaption></figure>
+</div>
+<p id="section-2.2-5">While this example demonstrates how a device may send or receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.<a href="#section-2.2-5" class="pilcrow">¶</a></p>
+<div id="multicast-across-segments-extension">
+<section id="section-2.2.1">
+          <h4 id="name-multicast-across-segments-e">
+<a href="#section-2.2.1" class="section-number selfRef">2.2.1. </a><a href="#name-multicast-across-segments-e" class="section-name selfRef">Multicast Across Segments Extension</a>
+          </h4>
+<p id="section-2.2.1-1">Whether a manufacturer intends for multicast packets to go beyond a local segment is something that can be expressed in the MUD file with the following extension:<a href="#section-2.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.1-2">Extension name: multicast-across-segments<a href="#section-2.2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.2.1-3">This extension does not extend the MUD YANG model; its presence in a MUD file simply signals to the network operator that multicast may be required to traverse network segments.<a href="#section-2.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-2.2.1-4">This will be useful when multicast is intended for purposes <strong>other</strong> than local discovery.  On its own it doesn't specify which multicast groups the device may need to join.  An ACL that permits multicast traffic is still required.<a href="#section-2.2.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="discussion-1">
+<section id="section-2.2.2">
+          <h4 id="name-discussion-2">
+<a href="#section-2.2.2" class="section-number selfRef">2.2.2. </a><a href="#name-discussion-2" class="section-name selfRef">Discussion</a>
+          </h4>
+<p id="section-2.2.2-1">Examples might include the following:<a href="#section-2.2.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2.2-5.1">
-            <p id="section-2.2-5.1.1">inbound: indicates whether the device must receive directed broadcasts.<a href="#section-2.2-5.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-2.2.2-2.1">
+              <p id="section-2.2.2-2.1.1">A controller that requires consistent behavior across a set of devices in a timely fashion. It may use multicast to communicate with all of them.<a href="#section-2.2.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-2.2-5.2">
-            <p id="section-2.2-5.2.1">outbound: indicates whether the device must send directed broadcasts.<a href="#section-2.2-5.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2.2.2-2.2">
+              <p id="section-2.2.2-2.2.1">A smoke detector that is part of a building-wide alarm system.  If one smoke detector detects smoke, it may multicast a message to audible and visual alarms throughout the building to sound the alarm.<a href="#section-2.2.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2.2.2-2.3">
+              <p id="section-2.2.2-2.3.1">On-hold music is a historical example, where music is distributed via multicast.<a href="#section-2.2.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-2.2.2-3">Note that operational issues associated with multicast, such as the scope of a multicast group, are outside the scope of this document.  Here we are merely documenting the device's behavior and network requirements.<a href="#section-2.2.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="handling-of-broadcasts">
+<section id="section-2.3">
+        <h3 id="name-handling-of-broadcasts">
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-handling-of-broadcasts" class="section-name selfRef">Handling of Broadcasts</a>
+        </h3>
+<p id="section-2.3-1"><span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> does not specify how broadcast should be handled.  Devices may make use of broadcast for many reasons, including discovery, fast failover, expedited processing, and so on.  There are a sufficient number of reasons to use broadcasts, that simply identifying that a device uses broadcasts seems as useful as saying that a device uses IP.  Therefore, in the context of MUD, all devices are assumed to both send and receive broadcasts.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="extensions">
+<section id="section-3">
+      <h2 id="name-extensions">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-extensions" class="section-name selfRef">Extensions</a>
+      </h2>
+<div id="directed-broadcasts">
+<section id="section-3.1">
+        <h3 id="name-directed-broadcasts">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-directed-broadcasts" class="section-name selfRef">Directed Broadcasts</a>
+        </h3>
+<p id="section-3.1-1">Some devices make use of directed broadcasts to communicate with devices either on the same subnet or on remote networks.  Directed broadcasts require local topological knowledge, specifically the subnet mask of the network to which the device is attached.  That information cannot be used across deployments, and so is inappropriate for MUD files.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">To address this, we specify a MUD extension here that indicates that the device uses directed broadcasts.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">Extension name: directed-broadcasts<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-4">A new object is added to the MUD file, called directed-broadcasts.  It contains two boolean elements:<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1-5.1">
+            <p id="section-3.1-5.1.1">inbound: indicates whether the device must receive directed broadcasts.<a href="#section-3.1-5.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-5.2">
+            <p id="section-3.1-5.2.1">outbound: indicates whether the device must send directed broadcasts.<a href="#section-3.1-5.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <div id="the-directed-broadcasts-extension">
-<section id="section-2.2.1">
+<section id="section-3.1.1">
           <h4 id="name-the-directed-broadcasts-ext">
-<a href="#section-2.2.1" class="section-number selfRef">2.2.1. </a><a href="#name-the-directed-broadcasts-ext" class="section-name selfRef">The directed-broadcasts extension</a>
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-the-directed-broadcasts-ext" class="section-name selfRef">The directed-broadcasts extension</a>
           </h4>
-<p id="section-2.2.1-1">The YANG tree for this extension is as follows:<a href="#section-2.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-1">The YANG tree for this extension is as follows:<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 <span id="name-yang-tree-for-directed-broa"></span><div id="figmud-directed-broadcasts">
-<figure id="figure-2">
-            <div class="alignLeft art-text artwork" id="section-2.2.1-2.1">
+<figure id="figure-3">
+            <div class="alignLeft art-text artwork" id="section-3.1.1-2.1">
 <pre>
 module: ietf-mud-directed-broadcasts
 
@@ -1403,14 +1492,14 @@ module: ietf-mud-directed-broadcasts
        +--rw outbound?   boolean
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-yang-tree-for-directed-broa" class="selfRef">YANG tree for directed-broadcasts extension</a>
             </figcaption></figure>
 </div>
-<p id="section-2.2.1-3">The YANG model for this extension is as follows:<a href="#section-2.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-3">The YANG model for this extension is as follows:<a href="#section-3.1.1-3" class="pilcrow">¶</a></p>
 <span id="name-yang-model-for-directed-bro"></span><div id="figmud-directed-broadcasts-yang">
-<figure id="figure-3">
-            <div class="alignLeft art-text artwork" id="section-2.2.1-4.1">
+<figure id="figure-4">
+            <div class="alignLeft art-text artwork" id="section-3.1.1-4.1">
 <pre>
 module ietf-mud-directed-broadcasts {
   yang-version 1.1;
@@ -1477,21 +1566,21 @@ module ietf-mud-directed-broadcasts {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-yang-model-for-directed-bro" class="selfRef">YANG model for directed-broadcasts extension</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="example">
-<section id="section-2.2.2">
+<section id="section-3.1.2">
           <h4 id="name-example">
-<a href="#section-2.2.2" class="section-number selfRef">2.2.2. </a><a href="#name-example" class="section-name selfRef">Example</a>
+<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-example" class="section-name selfRef">Example</a>
           </h4>
-<p id="section-2.2.2-1">The following is an example of a MUD file that indicates that the device uses directed broadcasts in both directions.<a href="#section-2.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-1">The following is an example of a MUD file that indicates that the device uses directed broadcasts in both directions.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
 <span id="name-example-mud-file-with-direc"></span><div id="figmud-directed-broadcasts-example">
-<figure id="figure-4">
-            <div class="alignLeft art-text artwork" id="section-2.2.2-2.1">
+<figure id="figure-5">
+            <div class="alignLeft art-text artwork" id="section-3.1.2-2.1">
 <pre>
 {
   "ietf-mud:mud": {
@@ -1516,151 +1605,74 @@ module ietf-mud-directed-broadcasts {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-example-mud-file-with-direc" class="selfRef">Example MUD file with directed-broadcasts extension</a>
             </figcaption></figure>
 </div>
-<p id="section-2.2.2-3">Note that in all likelihood there would also be ACLs in the MUD file, but they are omitted here for brevity.<a href="#section-2.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-3">Note that in all likelihood there would also be ACLs in the MUD file, but they are omitted here for brevity.<a href="#section-3.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="dibroaddisc">
-<section id="section-2.2.3">
-          <h4 id="name-discussion-2">
-<a href="#section-2.2.3" class="section-number selfRef">2.2.3. </a><a href="#name-discussion-2" class="section-name selfRef">Discussion</a>
-          </h4>
-<p id="section-2.2.3-1">Directed broadcasts have well known security issues (see <span>[<a href="#RFC2644" class="cite xref">RFC2644</a>]</span>).  However, they are used in circumstances where a limited amount of configuration is considered acceptable, and where other mechanisms such as multicast cannot be expected to be available in <strong>all</strong> deployments.  The purpose of this extension is <strong>not</strong> to encourage the use of directed broadcasts, but rather to provide a means to describe them in MUD files when they are used.<a href="#section-2.2.3-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="handling-of-multicast">
-<section id="section-2.3">
-        <h3 id="name-handling-of-multicast">
-<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-handling-of-multicast" class="section-name selfRef">Handling of Multicast</a>
-        </h3>
-<p id="section-2.3-1"><span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> does not specify how multicast should be handled.  Use of multicast for discovery is relatively common.  However, support for multicast beyond the local link is by no means guaranteed.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
-<p id="section-2.3-2">Unlike directed broadcasts, however, multicast addresses are not typically tied to a local network topology.  For this reason, MUD files <span class="bcp14">MAY</span> contain multicast addresses in ACLs.<a href="#section-2.3-2" class="pilcrow">¶</a></p>
-<p id="section-2.3-3">The following ACL fragment can be used by either the to-device or from-device ACL to permit multicast:<a href="#section-2.3-3" class="pilcrow">¶</a></p>
-<span id="name-example-multicast-ace-that-"></span><div id="figmud-multicast-acls">
-<figure id="figure-5">
-          <div class="alignLeft art-text artwork" id="section-2.3-4.1">
-<pre>
-{
-  "ace": [
-    {
-      "name": "permit-multicast",
-      "matches": {
-        "ipv4": {
-          "protocol": 17,
-          "destination-ipv4-network": "224.0.0.0/4"
-        }
-      },
-      "actions": {
-        "forwarding": "accept"
-      }
-    }
-  ]
-}
-
-</pre>
-</div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
-<a href="#name-example-multicast-ace-that-" class="selfRef">Example multicast ACE that can be used in a MUD file</a>
-          </figcaption></figure>
-</div>
-<p id="section-2.3-5">While this example demonstrates how a device may send or receive multicast traffic, it doesn't specify whether those packets may need to be transmitted across network segments.<a href="#section-2.3-5" class="pilcrow">¶</a></p>
-<div id="multicast-across-segments-extension">
-<section id="section-2.3.1">
-          <h4 id="name-multicast-across-segments-e">
-<a href="#section-2.3.1" class="section-number selfRef">2.3.1. </a><a href="#name-multicast-across-segments-e" class="section-name selfRef">Multicast Across Segments Extension</a>
-          </h4>
-<p id="section-2.3.1-1">Whether a manufacturer intends for multicast packets to go beyond a local segment is something that can be expressed in the MUD file with the following extension:<a href="#section-2.3.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.3.1-2">Extension name: multicast-across-segments<a href="#section-2.3.1-2" class="pilcrow">¶</a></p>
-<p id="section-2.3.1-3">This extension does not extend the MUD YANG model; its presence in a MUD file simply signals to the network operator that multicast may be required to traverse network segments.<a href="#section-2.3.1-3" class="pilcrow">¶</a></p>
-<p id="section-2.3.1-4">This will be useful when multicast is intended for purposes <strong>other</strong> than local discovery.  On its own it doesn't specify which multicast groups the device may need to join.  An ACL that permits multicast traffic is still required.<a href="#section-2.3.1-4" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="discussion-1">
-<section id="section-2.3.2">
+<section id="section-3.1.3">
           <h4 id="name-discussion-3">
-<a href="#section-2.3.2" class="section-number selfRef">2.3.2. </a><a href="#name-discussion-3" class="section-name selfRef">Discussion</a>
+<a href="#section-3.1.3" class="section-number selfRef">3.1.3. </a><a href="#name-discussion-3" class="section-name selfRef">Discussion</a>
           </h4>
-<p id="section-2.3.2-1">Examples might include the following:<a href="#section-2.3.2-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-2.3.2-2.1">
-              <p id="section-2.3.2-2.1.1">A controller that requires consistent behavior across a set of devices in a timely fashion. It may use multicast to communicate with all of them.<a href="#section-2.3.2-2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-2.3.2-2.2">
-              <p id="section-2.3.2-2.2.1">A smoke detector that is part of a building-wide alarm system.  If one smoke detector detects smoke, it may multicast a message to audible and visual alarms throughout the building to sound the alarm.<a href="#section-2.3.2-2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-2.3.2-2.3">
-              <p id="section-2.3.2-2.3.1">On-hold music is a historical example, where music is distributed via multicast.<a href="#section-2.3.2-2.3.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-<p id="section-2.3.2-3">Note that operational issues associated with multicast, such as the scope of a multicast group, are outside the scope of this document.  Here we are merely documenting the device's behavior and network requirements.<a href="#section-2.3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-1">Directed broadcasts have well known security issues (see <span>[<a href="#RFC2644" class="cite xref">RFC2644</a>]</span>).  However, they are used in circumstances where a limited amount of configuration is considered acceptable, and where other mechanisms such as multicast cannot be expected to be available in <strong>all</strong> deployments.  The purpose of this extension is <strong>not</strong> to encourage the use of directed broadcasts, but rather to provide a means to describe them in MUD files when they are used.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-</section>
-</div>
-<div id="handling-of-broadcasts">
-<section id="section-2.4">
-        <h3 id="name-handling-of-broadcasts">
-<a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-handling-of-broadcasts" class="section-name selfRef">Handling of Broadcasts</a>
-        </h3>
-<p id="section-2.4-1"><span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> does not specify how broadcast should be handled.  Devices may make use of broadcast for many reasons, including discovery, fast failover, expedited processing, and so on.  There are a sufficient number of reasons to use broadcasts, that simply identifying that a device uses broadcasts seems as useful as saying that a device uses IP.  Therefore, in the context of MUD, all devices are assumed to both send and receive broadcasts.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="security-considerations">
-<section id="section-3">
+<section id="section-4">
       <h2 id="name-security-considerations">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-3-1">The YANG module specified in this document defines a schema for data
+<p id="section-4-1">The YANG module specified in this document defines a schema for data
 that is designed to be accessed via network management protocols such
 as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.  The lowest NETCONF layer
 is the secure transport layer, and the mandatory-to-implement secure
 transport is Secure Shell (SSH) <span>[<a href="#RFC6242" class="cite xref">RFC6242</a>]</span>.  The lowest RESTCONF layer
 is HTTPS, and the mandatory-to-implement secure transport is TLS
-<span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The NETCONF access control model <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> provides the means to
+<span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">The NETCONF access control model <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> provides the means to
 restrict access for particular NETCONF or RESTCONF users to a
 preconfigured subset of all available NETCONF or RESTCONF protocol
-operations and content.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">MUD files are intended to be retrieved from a web server, and so the security considerations of <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> apply.  In addition, see <a href="#dibroaddisc" class="auto internal xref">Section 2.2.3</a> for a discussion of the security implications of directed broadcasts.<a href="#section-3-3" class="pilcrow">¶</a></p>
+operations and content.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">MUD files are intended to be retrieved from a web server, and so the security considerations of <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> apply.  In addition, see <a href="#dibroaddisc" class="auto internal xref">Section 3.1.3</a> for a discussion of the security implications of directed broadcasts.<a href="#section-4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-4">
+<section id="section-5">
       <h2 id="name-iana-considerations">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
 <div id="directed-broadcasts-mud-extension">
-<section id="section-4.1">
+<section id="section-5.1">
         <h3 id="name-directed-broadcasts-mud-ext">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-directed-broadcasts-mud-ext" class="section-name selfRef">Directed Broadcasts MUD Extension</a>
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-directed-broadcasts-mud-ext" class="section-name selfRef">Directed Broadcasts MUD Extension</a>
         </h3>
-<p id="section-4.1-1">IANA is requested to make the following additions to the "Manufacturer Usage Description (MUD) Extensions" registry:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-4.1-2">
+<p id="section-5.1-1">IANA is requested to make the following additions to the "Manufacturer Usage Description (MUD) Extensions" registry:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.1-2">
 <pre>
 Name: directed-broadcasts
 Reference: [RFCXXXX] (this document)
-</pre><a href="#section-4.1-2" class="pilcrow">¶</a>
+</pre><a href="#section-5.1-2" class="pilcrow">¶</a>
 </div>
-<div class="alignLeft art-text artwork" id="section-4.1-3">
+<div class="alignLeft art-text artwork" id="section-5.1-3">
 <pre>
 Name: multicast-across-segments
 Reference: [RFCXXXX] (this document)
-</pre><a href="#section-4.1-3" class="pilcrow">¶</a>
+</pre><a href="#section-5.1-3" class="pilcrow">¶</a>
 </div>
-<p id="section-4.1-4">The following YANG namespace is registered for the directed-broadcasts MUD extension:<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.1-4">The following YANG namespace is registered for the directed-broadcasts MUD extension:<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.1-5.1">
-            <p id="section-4.1-5.1.1">Namespace: urn:ietf:params:xml:ns:yang:ietf-mud-directed-broadcasts<a href="#section-4.1-5.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5.1-5.1">
+            <p id="section-5.1-5.1.1">Namespace: urn:ietf:params:xml:ns:yang:ietf-mud-directed-broadcasts<a href="#section-5.1-5.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.1-5.2">
-            <p id="section-4.1-5.2.1">Prefix: mud-directed-broadcasts<a href="#section-4.1-5.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-5.1-5.2">
+            <p id="section-5.1-5.2.1">Prefix: mud-directed-broadcasts<a href="#section-5.1-5.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1668,14 +1680,14 @@ Reference: [RFCXXXX] (this document)
 </section>
 </div>
 <div id="sec-combined-references">
-<section id="section-5">
+<section id="section-6">
       <h2 id="name-references">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-5.1">
+<section id="section-6.1">
         <h3 id="name-normative-references">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
@@ -1698,11 +1710,15 @@ Reference: [RFCXXXX] (this document)
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-5.2">
+<section id="section-6.2">
         <h3 id="name-informative-references">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="I-D.iotops-acceptable-urls">[I-D.iotops-acceptable-urls]</dt>
+        <dd>
+<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2644">[RFC2644]</dt>
         <dd>
 <span class="refAuthor">Senie, D.</span>, <span class="refTitle">"Changing the Default for Directed Broadcasts in Routers"</span>, <span class="seriesInfo">BCP 34</span>, <span class="seriesInfo">RFC 2644</span>, <span class="seriesInfo">DOI 10.17487/RFC2644</span>, <time datetime="1999-08" class="refDate">August 1999</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2644">https://www.rfc-editor.org/rfc/rfc2644</a>&gt;</span>. </dd>
@@ -1724,8 +1740,16 @@ Reference: [RFCXXXX] (this document)
 <span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"Network Configuration Access Control Model"</span>, <span class="seriesInfo">STD 91</span>, <span class="seriesInfo">RFC 8341</span>, <span class="seriesInfo">DOI 10.17487/RFC8341</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8341">https://www.rfc-editor.org/rfc/rfc8341</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8446">[RFC8446]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9499">[RFC9499]</dt>
+        <dd>
+<span class="refAuthor">Hoffman, P.</span> and <span class="refAuthor">K. Fujiwara</span>, <span class="refTitle">"DNS Terminology"</span>, <span class="seriesInfo">BCP 219</span>, <span class="seriesInfo">RFC 9499</span>, <span class="seriesInfo">DOI 10.17487/RFC9499</span>, <time datetime="2024-03" class="refDate">March 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9499">https://www.rfc-editor.org/rfc/rfc9499</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9726">[RFC9726]</dt>
+      <dd>
+<span class="refAuthor">Richardson, M.</span> and <span class="refAuthor">W. Pan</span>, <span class="refTitle">"Operational Considerations for Use of DNS in Internet of Things (IoT) Devices"</span>, <span class="seriesInfo">BCP 241</span>, <span class="seriesInfo">RFC 9726</span>, <span class="seriesInfo">DOI 10.17487/RFC9726</span>, <time datetime="2025-03" class="refDate">March 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9726">https://www.rfc-editor.org/rfc/rfc9726</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

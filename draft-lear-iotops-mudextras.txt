@@ -4,9 +4,9 @@
 
 IOT Operations                                                   E. Lear
 Internet-Draft                                       Cisco Systems, Inc.
-Updates: 8520 (if approved)                                 19 July 2026
+Updates: 8520 (if approved)                               11 August 2026
 Intended status: Standards Track                                        
-Expires: 20 January 2027
+Expires: 12 February 2027
 
 
                  Some MUD Extensions and Clarifications
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 January 2027.
+   This Internet-Draft will expire on 12 February 2027.
 
 Copyright Notice
 
@@ -75,20 +75,21 @@ Table of Contents
    2.  Clarifications
      2.1.  ACLs in MUD
        2.1.1.  Discussion
-     2.2.  Directed Broadcasts
-       2.2.1.  The directed-broadcasts extension
-       2.2.2.  Example
-       2.2.3.  Discussion
-     2.3.  Handling of Multicast
-       2.3.1.  Multicast Across Segments Extension
-       2.3.2.  Discussion
-     2.4.  Handling of Broadcasts
-   3.  Security Considerations
-   4.  IANA Considerations
-     4.1.  Directed Broadcasts MUD Extension
-   5.  References
-     5.1.  Normative References
-     5.2.  Informative References
+     2.2.  Handling of Multicast
+       2.2.1.  Multicast Across Segments Extension
+       2.2.2.  Discussion
+     2.3.  Handling of Broadcasts
+   3.  Extensions
+     3.1.  Directed Broadcasts
+       3.1.1.  The directed-broadcasts extension
+       3.1.2.  Example
+       3.1.3.  Discussion
+   4.  Security Considerations
+   5.  IANA Considerations
+     5.1.  Directed Broadcasts MUD Extension
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
    Appendix A.  Acknowledgments
    Appendix B.  Changes
    Author's Address
@@ -220,16 +221,106 @@ Table of Contents
       coordinated by the device manufacturer.
 
    *  Address changes will necessitate a new MUD file, which must be
-      signed and retrieved by MUD managers.
+      signed and retrieved by MUD managers (see
+      [I-D.iotops-acceptable-urls] about MUD updates)
 
 2.1.1.  Discussion
 
    Some device manufacturers will use hardcoded IP addresses to
-   bootstrap functions like the domain name system (DNS).  The use of
-   anycast servers is not uncommon.  Others simply do not want to
-   introduce a dependency on DNS.
+   bootstrap functions like the domain name system (DNS).  The use an
+   open resolver [RFC9499] is common.  Vendors are encouraged to always
+   use DHCP and RA provided DNS servers [RFC9726].
 
-2.2.  Directed Broadcasts
+   Others simply do not want to introduce any dependency on DNS, and
+   prefer to hard code the IPv4 and IPv6 addresses.
+
+2.2.  Handling of Multicast
+
+   [RFC8520] does not specify how multicast should be handled.  Use of
+   multicast for discovery is relatively common.  However, support for
+   multicast beyond the local link is by no means guaranteed.
+
+   Unlike directed broadcasts, however, multicast addresses are not
+   typically tied to a local network topology.  For this reason, MUD
+   files MAY contain multicast addresses in ACLs.
+
+   The following ACL fragment can be used by either the to-device or
+   from-device ACL to permit multicast:
+
+   {
+     "ace": [
+       {
+         "name": "permit-multicast",
+         "matches": {
+           "ipv4": {
+             "protocol": 17,
+             "destination-ipv4-network": "224.0.0.0/4"
+           }
+         },
+         "actions": {
+           "forwarding": "accept"
+         }
+       }
+     ]
+   }
+
+       Figure 2: Example multicast ACE that can be used in a MUD file
+
+   While this example demonstrates how a device may send or receive
+   multicast traffic, it doesn't specify whether those packets may need
+   to be transmitted across network segments.
+
+2.2.1.  Multicast Across Segments Extension
+
+   Whether a manufacturer intends for multicast packets to go beyond a
+   local segment is something that can be expressed in the MUD file with
+   the following extension:
+
+   Extension name: multicast-across-segments
+
+   This extension does not extend the MUD YANG model; its presence in a
+   MUD file simply signals to the network operator that multicast may be
+   required to traverse network segments.
+
+   This will be useful when multicast is intended for purposes *other*
+   than local discovery.  On its own it doesn't specify which multicast
+   groups the device may need to join.  An ACL that permits multicast
+   traffic is still required.
+
+2.2.2.  Discussion
+
+   Examples might include the following:
+
+   *  A controller that requires consistent behavior across a set of
+      devices in a timely fashion.  It may use multicast to communicate
+      with all of them.
+
+   *  A smoke detector that is part of a building-wide alarm system.  If
+      one smoke detector detects smoke, it may multicast a message to
+      audible and visual alarms throughout the building to sound the
+      alarm.
+
+   *  On-hold music is a historical example, where music is distributed
+      via multicast.
+
+   Note that operational issues associated with multicast, such as the
+   scope of a multicast group, are outside the scope of this document.
+   Here we are merely documenting the device's behavior and network
+   requirements.
+
+2.3.  Handling of Broadcasts
+
+   [RFC8520] does not specify how broadcast should be handled.  Devices
+   may make use of broadcast for many reasons, including discovery, fast
+   failover, expedited processing, and so on.  There are a sufficient
+   number of reasons to use broadcasts, that simply identifying that a
+   device uses broadcasts seems as useful as saying that a device uses
+   IP.  Therefore, in the context of MUD, all devices are assumed to
+   both send and receive broadcasts.
+
+3.  Extensions
+
+3.1.  Directed Broadcasts
 
    Some devices make use of directed broadcasts to communicate with
    devices either on the same subnet or on remote networks.  Directed
@@ -252,7 +343,7 @@ Table of Contents
    *  outbound: indicates whether the device must send directed
       broadcasts.
 
-2.2.1.  The directed-broadcasts extension
+3.1.1.  The directed-broadcasts extension
 
    The YANG tree for this extension is as follows:
 
@@ -263,7 +354,7 @@ Table of Contents
           +--rw inbound?    boolean
           +--rw outbound?   boolean
 
-           Figure 2: YANG tree for directed-broadcasts extension
+           Figure 3: YANG tree for directed-broadcasts extension
 
    The YANG model for this extension is as follows:
 
@@ -331,9 +422,9 @@ module ietf-mud-directed-broadcasts {
   }
 }
 
-        Figure 3: YANG model for directed-broadcasts extension
+        Figure 4: YANG model for directed-broadcasts extension
 
-2.2.2.  Example
+3.1.2.  Example
 
    The following is an example of a MUD file that indicates that the
    device uses directed broadcasts in both directions.
@@ -360,12 +451,12 @@ module ietf-mud-directed-broadcasts {
      }
    }
 
-       Figure 4: Example MUD file with directed-broadcasts extension
+       Figure 5: Example MUD file with directed-broadcasts extension
 
    Note that in all likelihood there would also be ACLs in the MUD file,
    but they are omitted here for brevity.
 
-2.2.3.  Discussion
+3.1.3.  Discussion
 
    Directed broadcasts have well known security issues (see [RFC2644]).
    However, they are used in circumstances where a limited amount of
@@ -375,91 +466,7 @@ module ietf-mud-directed-broadcasts {
    use of directed broadcasts, but rather to provide a means to describe
    them in MUD files when they are used.
 
-2.3.  Handling of Multicast
-
-   [RFC8520] does not specify how multicast should be handled.  Use of
-   multicast for discovery is relatively common.  However, support for
-   multicast beyond the local link is by no means guaranteed.
-
-   Unlike directed broadcasts, however, multicast addresses are not
-   typically tied to a local network topology.  For this reason, MUD
-   files MAY contain multicast addresses in ACLs.
-
-   The following ACL fragment can be used by either the to-device or
-   from-device ACL to permit multicast:
-
-   {
-     "ace": [
-       {
-         "name": "permit-multicast",
-         "matches": {
-           "ipv4": {
-             "protocol": 17,
-             "destination-ipv4-network": "224.0.0.0/4"
-           }
-         },
-         "actions": {
-           "forwarding": "accept"
-         }
-       }
-     ]
-   }
-
-       Figure 5: Example multicast ACE that can be used in a MUD file
-
-   While this example demonstrates how a device may send or receive
-   multicast traffic, it doesn't specify whether those packets may need
-   to be transmitted across network segments.
-
-2.3.1.  Multicast Across Segments Extension
-
-   Whether a manufacturer intends for multicast packets to go beyond a
-   local segment is something that can be expressed in the MUD file with
-   the following extension:
-
-   Extension name: multicast-across-segments
-
-   This extension does not extend the MUD YANG model; its presence in a
-   MUD file simply signals to the network operator that multicast may be
-   required to traverse network segments.
-
-   This will be useful when multicast is intended for purposes *other*
-   than local discovery.  On its own it doesn't specify which multicast
-   groups the device may need to join.  An ACL that permits multicast
-   traffic is still required.
-
-2.3.2.  Discussion
-
-   Examples might include the following:
-
-   *  A controller that requires consistent behavior across a set of
-      devices in a timely fashion.  It may use multicast to communicate
-      with all of them.
-
-   *  A smoke detector that is part of a building-wide alarm system.  If
-      one smoke detector detects smoke, it may multicast a message to
-      audible and visual alarms throughout the building to sound the
-      alarm.
-
-   *  On-hold music is a historical example, where music is distributed
-      via multicast.
-
-   Note that operational issues associated with multicast, such as the
-   scope of a multicast group, are outside the scope of this document.
-   Here we are merely documenting the device's behavior and network
-   requirements.
-
-2.4.  Handling of Broadcasts
-
-   [RFC8520] does not specify how broadcast should be handled.  Devices
-   may make use of broadcast for many reasons, including discovery, fast
-   failover, expedited processing, and so on.  There are a sufficient
-   number of reasons to use broadcasts, that simply identifying that a
-   device uses broadcasts seems as useful as saying that a device uses
-   IP.  Therefore, in the context of MUD, all devices are assumed to
-   both send and receive broadcasts.
-
-3.  Security Considerations
+4.  Security Considerations
 
    The YANG module specified in this document defines a schema for data
    that is designed to be accessed via network management protocols such
@@ -476,12 +483,12 @@ module ietf-mud-directed-broadcasts {
 
    MUD files are intended to be retrieved from a web server, and so the
    security considerations of [RFC8520] apply.  In addition, see
-   Section 2.2.3 for a discussion of the security implications of
+   Section 3.1.3 for a discussion of the security implications of
    directed broadcasts.
 
-4.  IANA Considerations
+5.  IANA Considerations
 
-4.1.  Directed Broadcasts MUD Extension
+5.1.  Directed Broadcasts MUD Extension
 
    IANA is requested to make the following additions to the
    "Manufacturer Usage Description (MUD) Extensions" registry:
@@ -500,9 +507,9 @@ module ietf-mud-directed-broadcasts {
 
    *  Prefix: mud-directed-broadcasts
 
-5.  References
+6.  References
 
-5.1.  Normative References
+6.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -523,7 +530,10 @@ module ietf-mud-directed-broadcasts {
               DOI 10.17487/RFC8520, March 2019,
               <https://www.rfc-editor.org/rfc/rfc8520>.
 
-5.2.  Informative References
+6.2.  Informative References
+
+   [I-D.iotops-acceptable-urls]
+              "*** BROKEN REFERENCE ***".
 
    [RFC2644]  Senie, D., "Changing the Default for Directed Broadcasts
               in Routers", BCP 34, RFC 2644, DOI 10.17487/RFC2644,
@@ -550,6 +560,15 @@ module ietf-mud-directed-broadcasts {
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/rfc/rfc8446>.
+
+   [RFC9499]  Hoffman, P. and K. Fujiwara, "DNS Terminology", BCP 219,
+              RFC 9499, DOI 10.17487/RFC9499, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9499>.
+
+   [RFC9726]  Richardson, M. and W. Pan, "Operational Considerations for
+              Use of DNS in Internet of Things (IoT) Devices", BCP 241,
+              RFC 9726, DOI 10.17487/RFC9726, March 2025,
+              <https://www.rfc-editor.org/rfc/rfc9726>.
 
 Appendix A.  Acknowledgments
 
