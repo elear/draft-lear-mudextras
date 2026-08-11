@@ -457,7 +457,7 @@ module ietf-mud-icons {
 ~~~~~
 {:#figmud-icons-example title="Example MUD file with icons extension"}
 
-Here we have three icons, each with a different size.
+Here we have three icons, each with a different size.  For brevity purposes, this example uses the `https` URI scheme, but the `data` URI scheme defined by {{!RFC2397}} could also have been used.
 
 # Security Considerations
 
