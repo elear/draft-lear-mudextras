@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-11T01:51:49.319656+00:00",
+  "timestamp": "2026-08-13T02:06:27.070819+00:00",
   "repo": "elear/draft-lear-mudextras",
   "labels": [
     {
@@ -56,24 +56,26 @@
       "id": "PR_kwDOTMien87zg2Wr",
       "title": "some minor edits/contributions",
       "url": "https://github.com/elear/draft-lear-mudextras/pull/1",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mcr",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-07-19T10:04:44Z",
-      "updatedAt": "2026-08-06T20:59:35Z",
+      "updatedAt": "2026-08-11T09:20:06Z",
       "baseRepository": "elear/draft-lear-mudextras",
       "baseRefName": "main",
       "baseRefOid": "3a79206360aa521c10d92ab4b16ec58cedbb62dd",
       "headRepository": "mcr/draft-lear-mudextras",
       "headRefName": "mcr-comments-edits",
       "headRefOid": "e8c8c8564ee42a0c90a7cfff13c0ca054be569c6",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-08-11T09:20:06Z",
+      "mergedAt": "2026-08-11T09:20:06Z",
+      "mergedBy": "elear",
+      "mergeCommit": {
+        "oid": "307599b73000e17e693b5fc5ca4031c83495fe9d"
+      },
       "comments": [
         {
           "author": "elear",
@@ -84,12 +86,45 @@
         },
         {
           "author": "mcr",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "> I can't actually see what changed with multicast. Did you refold?\r\n\r\nGood question, what did I do...\r\nOh, I moved multicast up, as a clarification, as it's not a new extension.\r\nSo that extensions are grouped, and clarifications are grouped.\r\nI did do that in a commit different from the other edits, but they get grouped under Files Changes.\r\nShould have made that two PRs, via stacked PRs, I guess.",
           "createdAt": "2026-08-06T20:58:11Z",
           "updatedAt": "2026-08-06T20:59:35Z"
+        },
+        {
+          "author": "elear",
+          "authorAssociation": "OWNER",
+          "body": "I'm going to merge this, because I like your restructure.  But I think the DNS text needs more work.",
+          "createdAt": "2026-08-11T09:20:00Z",
+          "updatedAt": "2026-08-11T09:20:00Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOTMien879j2O6",
+      "title": "Bunch o' Changes",
+      "url": "https://github.com/elear/draft-lear-mudextras/pull/2",
+      "state": "OPEN",
+      "author": "elear",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "\r\n* Clarifying broadcast address usage.\r\n* Add icons\r\n\r\n",
+      "createdAt": "2026-08-11T14:20:53Z",
+      "updatedAt": "2026-08-11T14:21:17Z",
+      "baseRepository": "elear/draft-lear-mudextras",
+      "baseRefName": "main",
+      "baseRefOid": "307599b73000e17e693b5fc5ca4031c83495fe9d",
+      "headRepository": "elear/draft-lear-mudextras",
+      "headRefName": "more-mods",
+      "headRefOid": "e4d99fe111f73ba829f36b57699c016e39982498",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
